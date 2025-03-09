@@ -57,7 +57,7 @@ which the value is expired. Setting this to nil means to never
 expire, which will cause a memory leak, but may be acceptable for
 very careful uses.")
 
-(defun memoize (func &optional timeout)
+(cl-defun memoize (func &optional (timeout memoize-default-timeout))
   "Memoize FUNC: a closure, lambda, or symbol.
 
 If argument is a symbol then install the memoized function over
@@ -92,7 +92,7 @@ FUNC should be a symbol which has been memoized with `memoize'."
   "Return the memoized version of FUNC.
 TIMEOUT specifies how long the values last from last access. A
 nil timeout will cause the values to never expire, which will
-cause a memory leak as memoize is use, so use the nil value with
+cause a memory leak as memoize is used, so use the nil value with
 care."
   (let ((table (make-hash-table :test 'equal))
         (timeouts (make-hash-table :test 'equal)))
@@ -101,7 +101,7 @@ care."
         (unwind-protect
             (or value (puthash args (apply func args) table))
           (let ((existing-timer (gethash args timeouts))
-                (timeout-to-use (or timeout memoize-default-timeout)))
+                (timeout-to-use timeout))
             (when existing-timer
               (cancel-timer existing-timer))
             (when timeout-to-use
