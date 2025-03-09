@@ -115,7 +115,7 @@ care."
 have the same meaning as in `defun'."
   (declare (indent 2) (doc-string 3) (debug defun))
   `(progn
-     (defun ,name ,arglist
+     (cl-defun ,name ,arglist
        ,@body)
      (memoize (quote ,name))))
 
@@ -179,7 +179,7 @@ will get garbage collected."
 DOCSTRING and BODY have the same meaning as in `defun'."
   (declare (indent defun))
   `(progn
-     (defun ,name ,arglist
+     (cl-defun ,name ,arglist
        ,@body)
      (memoize-by-buffer-contents (quote ,name))))
 
