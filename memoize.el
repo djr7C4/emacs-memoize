@@ -51,11 +51,12 @@
 (require 'cl-lib)
 
 (defvar memoize-default-timeout "2 hours"
-  "The amount of time after which to remove a memoization.
-This represents the time after last use of the memoization after
-which the value is expired. Setting this to nil means to never
-expire, which will cause a memory leak, but may be acceptable for
-very careful uses.")
+  "The amount of time after which to remove a memoization. This
+represents the time after last use of the memoization after which
+the value is expired. Setting this to nil means to never expire,
+which will cause a memory leak, but may be acceptable for very
+careful uses. See `run-at-time' for the meaning of non-nil values
+for this variable.")
 
 (cl-defun memoize (func &optional (timeout memoize-default-timeout))
   "Memoize FUNC: a closure, lambda, or symbol.
