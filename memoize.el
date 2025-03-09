@@ -68,7 +68,7 @@ happens)."
   (cl-typecase func
     (symbol
      (when (get func :memoize-original-function)
-       (user-error "%s is already memoized" func))
+       (error "%s is already memoized" func))
      (put func :memoize-original-documentation (documentation func))
      (put func 'function-documentation
           (concat (documentation func) " (memoized)"))
@@ -81,7 +81,7 @@ happens)."
   "Restore the original, non-memoized definition of FUNC.
 FUNC should be a symbol which has been memoized with `memoize'."
   (unless (get func :memoize-original-function)
-    (user-error "%s is not memoized" func))
+    (error "%s is not memoized" func))
   (fset func (get func :memoize-original-function))
   (put func :memoize-original-function nil)
   (put func 'function-documentation
