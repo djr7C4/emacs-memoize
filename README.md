@@ -1,3 +1,11 @@
+# Fork
+I've made this fork since the original
+[repository](https://github.com/skeeto/emacs-memoize) is no longer maintained as
+per this [discussion](https://github.com/skeeto/emacs-memoize/pull/10). It will
+be kept usable enough for my packages and configuration though it may not be
+developed too actively. It currently contains several bug fixes and changes that
+do not exist in the original repository.
+
 # Elisp memoization functions
 
 See the header in the source file for details. It's very easy to use:
